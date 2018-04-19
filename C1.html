@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<style>
+table {
+	border: 1px solid black;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	padding: 5px;
+	text-align: left;
+}
+
+#a2 {
+	display: block;
+	margin: auto;
+}
+
+.selected {
+	background-color: red;
+}
+</style>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function() {
+	//ADD row action code
+		var i = 2;
+		$(".addmore")
+				.on(
+						'click',
+						function() {
+							count = $('table tr').length;
+							var data = "<tr><td><input type='checkbox' class='case'/></td><td><span id='snum"+i+"'>"
+									+  Math.floor(Math.random()*100) + "</span></td>";
+							data += "<td><input type='text' id='fname"+i+"' name='fname'/></td><td><input type='text' id='rollno"+i+"' name='rollno'/></td><td><input type='text' id='marks"+i+"' name='marks'/>"
+
+							$('table tbody').append(data);
+							i++;
+
+							sortval();
+						});
+		//DELETE row action code
+		$(".deleterow").on('click', function() {
+			$('.case:checkbox:checked').parents("tr").remove();
+			//rows sort based on num that is 2 column column
+			sortval();
+		});
+
+		//b.Highlight the table row(s) if it selected.//c.Highlight table row record on hover and avoid highlight the header row record.
+		$("#t1 tbody").on("mouseover", "tr", function(){
+        $(this).addClass("selected");
+		
+    });
+	$("tbody").on("mouseout", "tr", function(){
+		var checkboxes = $(this).find("input[type=checkbox]");
+		if (checkboxes.is(':checked')) {
+        } else {
+            $(this).removeClass("selected");
+        }
+	////////////////////
+	});	
+		//Sort based on second column value which is generated using Math.random()
+		function sortval() {
+			var rows = $('#t1 tbody  tr').get();
+			console.log(rows);
+			rows
+					.sort(function(a, b) {
+						var A = parseInt($(a).children('td').eq(1).text()
+								.toUpperCase());
+						var B = parseInt($(b).children('td').eq(1).text()
+								.toUpperCase());
+
+						if (A < B) {
+							return -1;
+						}
+						if (A > B) {
+							return 1;
+						}
+						return 0;
+					});
+			$.each(rows, function(index, row) {
+				$('#t1').children('tbody').append(row);
+			});
+
+		}
+
+	});
+	
+
+</script>
+</head>
+<body>
+	<button type="button" class='addmore'>Add Row</button>
+	<button type="button" class='deleterow' >Delete Row</button>
+	<table id="t1">
+		<thead>
+			<tr>
+				<th><input class='check_all' type='checkbox' /></th>
+				<th>Value</th>
+				<th>Name</th>
+				<th>Roll Number</th>
+				<th>Marks</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><input type='checkbox' class='case' /></td>
+				<td><span id='snum'>1</span></td>
+				<td><input type='text' id='fname' name='fname' /></td>
+				<td><input type='text' id='rollno' name='rollno' /></td>
+				<td><input type='text' id='marks' name='marks' /></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

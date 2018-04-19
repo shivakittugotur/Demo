@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+var count=0;
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			if(count%2==0){
+				$(".dropdown-menu").css("display", "block");
+			}
+			else{
+				$(".dropdown-menu").css("display", "none");
+			}
+			count++;
+		});
+	}); 
+
+</script>
+<style>
+
+li{
+ display: inline BLOCK;
+ border: 1px solid #ADD8E6;
+ background-color:#ADD8E6;
+  max-width: 150px;
+
+}
+.dropdown-menu{
+	display:none;
+	}
+</style>
+</head>
+<body>
+<input type="button" id="btn1" value="click for dropdown menu"/>
+<div id="menu">
+  <ul>
+   
+   
+      <ul class="dropdown-menu">
+        <li>WEM</li>
+        <li>OTMM</li>
+        <li>PORTAL</li>
+        <li>SOCIAL</li>
+      </ul>
+   
+  </ul>
+</div>
+
+</body>
+</html>

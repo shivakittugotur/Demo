@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+input { 
+   
+    border: 5px solid blue;
+    color: #f71234;
+    padding: 10px;
+    margin: 175px;
+	margin-top:0px;
+}
+h2{
+ margin-left: 175px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function () {
+    $('#num').on('keydown keyup', function () {
+        var x = $('#num').val();
+        $('#num').val(formatNum(x));
+    });
+});
+ 
+function formatNum(x) {
+    var parts = x.toString().split(".");
+	parts[0]=parts[0].split(",").join("");
+    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return parts.join(".");
+}
+</script>
+</head>
+
+<body >
+<h2>Number format</h2>
+ <input id="num" type="text" />
+
+</body>
+</html>

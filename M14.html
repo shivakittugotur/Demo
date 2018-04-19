@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function(){
+	$("input").on("mouseleave",function(){
+		var data=$(this).val();
+		var f=0,g=0;
+	//	var numericdata=new RegExp("^\d+(\.\d{1,2})?$");
+		for(var i=0;i<data.length;i++){
+			
+			if((data[i]>='0'&&data[i]<='9') ||((data[i]=='.')&& g==0)){
+				if((data[i]=='.'))
+					g=1;
+				continue;
+			}
+				
+			else
+				f=1;
+		}
+		if(f===0)
+			$(this).css({"border-color":"yellow"});
+			else
+				$(this).css({"border-color":"red"});
+		
+	});
+});
+
+
+</script>
+<style>
+#test{
+font-weight: bold;
+background-color:blue;
+text-color:white;
+width:150px;
+}
+.ul1{
+display:none;
+}</style>
+</head>
+<body>
+ <input id="btn1" type="button" value="click for dropdown menu"/>
+<ul class='ul1'>
+  <li >WEM</li>
+  <li>OTMM</li>
+  <li>PORTAL</li>
+  <li >SOCIAL</li>
+  </ul>
+ 
+<p>only p tag</p>
+<p>This is shiva krishna from cvr college of engineering studying btech </p>
+<div id="test">shiva</div>
+
+</body>
+</html>

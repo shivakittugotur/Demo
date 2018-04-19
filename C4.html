@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+input { 
+   
+    border: 5px solid blue;
+    color: #f71234;
+    padding: 10px;
+    margin: 175px;
+	margin-top:0px;
+}
+h2{
+ margin-left: 175px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function(){
+$( ".p1" ).on( "myCustomEvent", function( event, obj ) {
+ 
+  console.log(obj.message);
+  });
+$( ".gen_event" ).click(function() {
+	var obj={
+	message:"This is the  message to be displayed in console",
+severity:"medium"
+};
+  $( ".p1" ).trigger( "myCustomEvent",obj );
+});
+});
+</script>
+</head>
+<h2>Custom Event Generation</h2>
+<div class="p1">
+      <div class="p2">
+                <div class="c1"><button class="gen_event" >Generate custom log event</button><div>
+       </div>
+  </div>
+</body>
+</html>

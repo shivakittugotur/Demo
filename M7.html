@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.ancestors * { 
+    display: block;
+    border: 2px solid lightgrey;
+    color: lightgrey;
+    padding: 5px;
+    margin: 15px;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+ $('input[type="button"]').on("click",function(){
+ var t=$("#tag1").val();
+ var t1=$("#tag2").val();
+ console.log(t+" "+t1);
+ var str="";
+	while(!$(t1).parent().is(t)){
+	
+	var t2=$(t1).parent().prop("tagName");
+	str+="   "+t2;
+	t1=t2;
+	}
+	alert("The ancestors between the entered tags are\n"+str);
+	});
+ 
+
+});
+</script>
+</head>
+
+<body > body (great-great-grandparent)
+  <div style="width:500px;" class="ancestors">div (great-grandparent)
+    <ul>ul (grandparent)  
+      <li>li (direct parent)
+        <span>span</span>
+      </li>
+    </ul>   
+  </div>
+
+Upper Tag:<input type="text" name="tag1" id="tag1"></input><br/><br/>
+Lower Tag:<input type="text" name="tag2" id="tag2"></input><br/><br/>
+<input type="button" value="Get Ancestors between entered tags"/>
+</body>
+</html>

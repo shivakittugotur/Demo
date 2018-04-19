@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(function(){
+	var $students=$("#students_list");
+	var $name=$("name");
+	var $cty=$("city");
+	var $house=$("house");
+	$.ajax({
+		type:'GET',
+		url:'http://mysafeinfo.com/api/data?list=englishmonarchs&format=json',
+		success: function(data){
+			$.each(JSON.parse(data),function(i,data){
+				$students.append("<li><strong>Name:</strong> "+data.nm+" <strong>   city:</strong> "+data.cty+"  <strong>  house:</strong> "+data.hse+"</li>");
+			});
+		},
+		error:function(){
+			alert("error in get request");
+		}
+			
+		
+	
+	});
+	$("#btn1").on("click",function(){
+		var details={
+				nm:$name.val(),
+				cty:$cty.val(),
+				hse:$house.val()
+				};
+		$.ajax({
+			type:'POST',
+			url:'http://mysafeinfo.com/api/data?list=englishmonarchs&format=json',
+			data:details,
+			success: function(data){
+				
+					$students.prepend("<li><strong>Name:</strong> "+data.nm+" <strong>   city:</strong> "+data.cty+"  <strong>  house:</strong> "+data.hse+"</li>");
+				},
+			error:function(){
+				alert("error in POST request");
+			}
+				
+			});
+		
+		});
+		
+				
+	
+	
+});
+</script>
+</head>
+
+<body>
+<h2>Students Details</h2>
+<ul id="students_list">
+
+</ul>
+<h2>Add New Student Details</h2>
+<p>Name    :<input type="text" id="name"/><p>
+<p>City    :<input type="text" id="city"/><p>
+<p>House   :<input type="text" id="house"/><p>
+<input type="button" id="btn1" value="add details"/>
+</body>
+</html>
